@@ -1,4 +1,5 @@
 import { Message } from "../models/message.js"
+import { Profile } from '../models/profile.js'
 
 function index(req, res) {
   Message.find({})

@@ -9,6 +9,8 @@ import cors from 'cors'
 // import routers
 
 import { router as messagesRouter } from './routes/messages.js'
+import { router as profilesRouter } from './routes/profiles.js'
+import { router as authRouter } from './routes/auth.js'
 
 import('./config/database.js')
 
@@ -36,6 +38,8 @@ app.use(
 
 // mounted routers
 app.use('/messages', messagesRouter)
+app.use('/api/profiles', profilesRouter)
+app.use('/api/auth', authRouter)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
