@@ -56,10 +56,55 @@ const show = async (req, res) => {
   }
 }
 
+const createComment = async (req, res) => {
+  try {
+    req.body.commenter = req.user.profile
+    const message = await Message.findById(req.params.id)
+    message.comments.push(req.body)
+    await message.save()
+    const newComment = message.comments[message.comments.length - 1]
+    return res.status(201).json(newComment)
+  } catch (err) {
+    res.status(500).json(err)
+  }
+}
+
+// const editComment = async (req, res) => {
+//   try {
+//     const message = await Message.findById(req.params.id)
+
+//     message.comments.findByIdAndUpdate(req.params.commentId, req.body, {new: true})
+
+
+//     await comments.save()
+    
+//     return res.status(200).json(comments)
+
+//   } catch (err) {
+//     res.status(500).json(err)
+//   }
+// }
+
+const deleteComment = async(req, res)=> {
+  try {
+    const message = await Message.findById(req.params.id)
+    message.comments.remove({_id: req.params.commentId})
+
+    await message.save()
+    return res.status(204).end()
+  }catch(err){
+    res.status(500).json(err)
+  }
+}
+
 export {
   index,
   create,
   update,
   deleteMessage as delete,
-  show
+  show,
+  createComment,
+  deleteComment,
+  // editComment
+  
 }
