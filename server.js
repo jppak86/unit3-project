@@ -37,7 +37,7 @@ app.use(
 )
 
 // mounted routers
-app.use('/messages', messagesRouter)
+app.use('/api/messages', messagesRouter)
 app.use('/api/profiles', profilesRouter)
 app.use('/api/auth', authRouter)
 

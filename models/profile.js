@@ -8,12 +8,12 @@ const profileSchema = new mongoose.Schema({
   },
   avater: {
     type: String,
-    required: true
+    required: false,
   },
-  posts: [
+  messages: [
     {
       type:mongoose.Schema.Types.ObjectId,
-      ref: 'Post'
+      ref: 'Message'
     }
   ]
 },{
