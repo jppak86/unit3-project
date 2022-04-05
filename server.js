@@ -29,12 +29,12 @@ app.use(cors())
 app.use(logger('dev'))
 app.use(express.json())
 app.use(formData.parse())
-app.use(express.urlencoded({ extended: false }))
-app.use(
-  express.static(
-    path.join(path.dirname(fileURLToPath(import.meta.url)), 'public')
-  )
-)
+// app.use(express.urlencoded({ extended: false }))
+// app.use(
+//   express.static(
+//     path.join(path.dirname(fileURLToPath(import.meta.url)), 'public')
+//   )
+// )
 
 // mounted routers
 app.use('/api/messages', messagesRouter)

@@ -9,10 +9,7 @@ const commentSchema = new Schema({
       type: String,
       required: true
   },
-  photo: {
-      type: String,
-      required: false
-  },
+  
   commenter: { type: mongoose.Schema.Types.ObjectId, ref: 'Profile' },
   // We will embed the commentSchema here!!!
 }, { timestamps: true })
@@ -21,11 +18,8 @@ const messageSchema = new Schema({
   message: {
     type: String,
     required: true
-},
-photo: {
-    type: String,
-    required: false
-},
+}, photo: {type: String},
+
 added_by: { type: mongoose.Schema.Types.ObjectId, ref: 'Profile' },
 comments: [commentSchema],
 }, {

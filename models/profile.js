@@ -6,10 +6,7 @@ const profileSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  avater: {
-    type: String,
-    required: false,
-  },
+  photo: {type: String},
   messages: [
     {
       type:mongoose.Schema.Types.ObjectId,

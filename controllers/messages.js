@@ -39,13 +39,20 @@ const deleteMessage = async (req, res) => {
   }
 }
 
-function update(req, res) {
-  Message.findByIdAndUpdate(req.params.id, req.body, {new: true})
-  .then(message => res.json(message))
-  .catch(err => res.json(err))
+const update = async (req, res) => {
+  console.log("HITTTTTTT")
+  try {
+  const message = await Message.findByIdAndUpdate(req.params.id, req.body, {new: true})
+  await message.save()
+  return res.status(200).json(message)
+  } catch (err) {
+    return res.status(500).json(err)
+  }
 }
 
+
 const show = async (req, res) => {
+  console.log("HIT")
   try {
     const message = await Message.findById(req.params.id)
       .populate('added_by')
@@ -72,13 +79,14 @@ const createComment = async (req, res) => {
 // const editComment = async (req, res) => {
 //   try {
 //     const message = await Message.findById(req.params.id)
-
+// console.log("MESSAGE: ", message)
+// console.log("Call back commentId: ", req.params.commentId)
 //     message.comments.findByIdAndUpdate(req.params.commentId, req.body, {new: true})
 
 
-//     await comments.save()
+//     await message.save()
     
-//     return res.status(200).json(comments)
+//     return res.status(200).json(message)
 
 //   } catch (err) {
 //     res.status(500).json(err)
